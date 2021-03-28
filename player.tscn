@@ -10,12 +10,14 @@ height = 10.2423
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="ysort" type="YSort" parent="."]
+
+[node name="Sprite" type="Sprite" parent="ysort"]
 texture = ExtResource( 1 )
+
+[node name="weapon_slot" type="Position2D" parent="ysort"]
+position = Vector2( 6.98269, -2.65165 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
-
-[node name="weapon_slot" type="Position2D" parent="."]
-position = Vector2( 6.98269, -2.65165 )
