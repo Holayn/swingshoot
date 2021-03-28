@@ -1,13 +1,23 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://cursor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world.gd" type="Script" id=3]
+[ext_resource path="res://enemy.tscn" type="PackedScene" id=4]
 
 [node name="world" type="Node"]
 script = ExtResource( 3 )
 
-[node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 51.8284, 320.382 )
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2( 99.0251, 93.3885 )
+current = true
 
-[node name="cursor" parent="." instance=ExtResource( 2 )]
+[node name="ysort" type="YSort" parent="."]
+
+[node name="player" parent="ysort" instance=ExtResource( 1 )]
+position = Vector2( 99.0251, 93.3885 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="ysort/player"]
+remote_path = NodePath("../../../camera")
+
+[node name="enemy" parent="ysort" instance=ExtResource( 4 )]
+position = Vector2( 127.5, 73.5 )

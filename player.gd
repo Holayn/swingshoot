@@ -22,8 +22,3 @@ func controls_process(delta):
 	move_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	move_dir.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	move_dir = move_dir.normalized()
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		look_at(event.position)
-		self.rotation_degrees = self.rotation_degrees + 90
