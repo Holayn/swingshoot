@@ -14,6 +14,9 @@ var equipped_weapon
 func _ready():
 	equip_weapon(gun)
 
+func test():
+	print("asdf")
+
 func _process(delta):
 	controls_process(delta)
 	movement_process(delta)
@@ -31,13 +34,14 @@ func controls_process(delta):
 	move_dir.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	move_dir = move_dir.normalized()
 	
-	if Input.is_action_just_pressed("lclick"):
-		use_weapon()
+#	if Input.is_action_just_pressed("lclick"):
+#		use_weapon()
 
 func equip_weapon(weapon):
 	var weapon_instance = weapon.instance()
 	$ysort/weapon_slot.add_child(weapon_instance)
 	equipped_weapon = weapon_instance
+	weapon_instance.connect("projectile_fire", get_tree().get_root().get_node("world/ysort/projectile_ctrl"), "_on_projectile_fire")
 	
 func use_weapon():
 	equipped_weapon.fire()

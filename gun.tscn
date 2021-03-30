@@ -15,3 +15,4 @@ position = Vector2( 0, -10 )
 
 [node name="fire_direction" type="Position2D" parent="."]
 position = Vector2( 0, -4.875 )
+[connection signal="projectile_fire" from="." to="." method="_on_gun_projectile_fire"]

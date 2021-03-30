@@ -3,11 +3,14 @@ extends Node
 var state
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			$ysort/player.use_weapon()
+	
+	elif event is InputEventMouseMotion:
 		var center_x = ProjectSettings.get_setting("display/window/size/width")/2
 		var center_y = ProjectSettings.get_setting("display/window/size/height")/2
 		
 		var angle = atan2(get_viewport().get_mouse_position().y - center_y, get_viewport().get_mouse_position().x - center_x);
 		
 		$ysort/player.rotation = angle + deg2rad(90);
-

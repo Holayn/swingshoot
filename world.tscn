@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://projectile_ctrl.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world.gd" type="Script" id=3]
 [ext_resource path="res://enemy.tscn" type="PackedScene" id=4]
 
@@ -21,3 +22,5 @@ remote_path = NodePath("../../../camera")
 
 [node name="enemy" parent="ysort" instance=ExtResource( 4 )]
 position = Vector2( 127.5, 73.5 )
+
+[node name="projectile_ctrl" parent="ysort" instance=ExtResource( 2 )]
