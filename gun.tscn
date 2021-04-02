@@ -11,7 +11,8 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="fire_origin" type="Position2D" parent="."]
-position = Vector2( 0, -10 )
+position = Vector2( 0, -5 )
+scale = Vector2( 0.333333, 2 )
 
 [node name="fire_direction" type="Position2D" parent="."]
-position = Vector2( 0, -4.875 )
+position = Vector2( 0, -8 )

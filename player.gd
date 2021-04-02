@@ -38,6 +38,10 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		look_at(get_global_mouse_position())
 		rotation += deg2rad(90)
+		
+		#rotate weapon as well
+		equipped_weapon.look_at(get_global_mouse_position())
+		equipped_weapon.rotation += deg2rad(90)
 
 func equip_weapon(weapon):
 	var weapon_instance = weapon.instance()
@@ -46,5 +50,5 @@ func equip_weapon(weapon):
 	weapon_instance.connect("projectile_fire", get_tree().get_root().get_node("world/ysort/projectile_ctrl"), "_on_projectile_fire")
 	
 func use_weapon():
-	var at_position = get_global_mouse_position()
-	equipped_weapon.fire(at_position)
+#	var at_position = get_global_mouse_position()
+	equipped_weapon.fire()
