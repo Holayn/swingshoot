@@ -12,3 +12,4 @@ func _process(delta):
 
 func set_direction(dir):
 	bullet_direction = dir
+	global_rotation = dir + deg2rad(90)
