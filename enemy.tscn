@@ -1,15 +1,44 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprites/enemy-v1.png" type="Texture" id=1]
+[ext_resource path="res://player_detect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemy.gd" type="Script" id=3]
+[ext_resource path="res://hurtbox.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 5.24731
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.38937
 height = 0.0
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 197.448
+
 [node name="enemy" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 31
+script = ExtResource( 3 )
+
+[node name="hurtbox" parent="." instance=ExtResource( 5 )]
+collision_layer = 8
+collision_mask = 22
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource( 3 )
 
 [node name="enemy-v1" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
+
+[node name="player_detect" parent="." instance=ExtResource( 2 )]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player_detect"]
+visible = false
+shape = SubResource( 2 )
+[connection signal="registered_hit" from="hurtbox" to="." method="_on_hurtbox_registered_hit"]

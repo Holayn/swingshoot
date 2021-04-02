@@ -22,5 +22,6 @@ remote_path = NodePath("../../../camera")
 
 [node name="enemy" parent="ysort" instance=ExtResource( 4 )]
 position = Vector2( 127.5, 73.5 )
+speed = 100
 
 [node name="projectile_ctrl" parent="ysort" instance=ExtResource( 2 )]

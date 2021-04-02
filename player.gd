@@ -6,16 +6,13 @@ const gun = preload("res://gun.tscn")
 var move_dir = Vector2.ZERO
 var velocity = Vector2.ZERO
 var speed = 100
-const ACCEL = 600
+const ACCEL = 100
 const FRICTION = 500
 
 var equipped_weapon
 
 func _ready():
 	equip_weapon(gun)
-
-func test():
-	print("asdf")
 
 func _process(delta):
 	controls_process(delta)
@@ -34,8 +31,17 @@ func controls_process(delta):
 	move_dir.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	move_dir = move_dir.normalized()
 	
-#	if Input.is_action_just_pressed("lclick"):
-#		use_weapon()
+	if Input.is_action_just_pressed("lclick"):
+		use_weapon()
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		var center_x = ProjectSettings.get_setting("display/window/size/width")/2
+		var center_y = ProjectSettings.get_setting("display/window/size/height")/2
+		
+		var angle = atan2(get_viewport().get_mouse_position().y - center_y, get_viewport().get_mouse_position().x - center_x);
+		
+		rotation = angle + deg2rad(90);
 
 func equip_weapon(weapon):
 	var weapon_instance = weapon.instance()
