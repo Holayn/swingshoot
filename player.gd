@@ -36,12 +36,8 @@ func controls_process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		var center_x = ProjectSettings.get_setting("display/window/size/width")/2
-		var center_y = ProjectSettings.get_setting("display/window/size/height")/2
-		
-		var angle = atan2(get_viewport().get_mouse_position().y - center_y, get_viewport().get_mouse_position().x - center_x);
-		
-		rotation = angle + deg2rad(90);
+		look_at(get_global_mouse_position())
+		rotation += deg2rad(90)
 
 func equip_weapon(weapon):
 	var weapon_instance = weapon.instance()
@@ -50,4 +46,5 @@ func equip_weapon(weapon):
 	weapon_instance.connect("projectile_fire", get_tree().get_root().get_node("world/ysort/projectile_ctrl"), "_on_projectile_fire")
 	
 func use_weapon():
-	equipped_weapon.fire()
+	var at_position = get_global_mouse_position()
+	equipped_weapon.fire(at_position)
